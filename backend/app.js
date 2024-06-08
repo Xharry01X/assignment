@@ -3,6 +3,9 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const connectDB = require("./db/database.js");
 const authRouter = require("./routing/auth.js");
+const imageRouter = require( "./routing/images.js" );
+const errorHandler = require( "./middlewares/errorHandler.js" );
+const cookieParser = require( "cookie-parser" );
 
 dotenv.config();
 
@@ -16,8 +19,11 @@ app.use(cors({
     credentials:true
 }));
 app.use(express.json())
+app.use(cookieParser())
+app.use(errorHandler)
 
 app.use('/api/auth', authRouter);
+app.use('/api/img',imageRouter)
 
 app.listen(port, () => {
     console.log(`Server live at ${port}`);

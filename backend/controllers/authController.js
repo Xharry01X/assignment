@@ -1,4 +1,3 @@
-// authController.cjs
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
@@ -8,8 +7,6 @@ const expressAsyncHandler = require("express-async-handler");
 dotenv.config();
 
 const Register = expressAsyncHandler(async (req, res) => {
-    
-
     try {
         const { username, password } = req.body;
         const user = await User.findOne({ username });
@@ -32,9 +29,9 @@ const Register = expressAsyncHandler(async (req, res) => {
 
         jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: 3600 }, (err, token) => {
             if (err) throw err;
-            res.json({ token });
+            res.cookie('token', token, { httpOnly: true });
+            res.status(200).json({ message: "Register successful" });
         });
-        res.status(200).json({message:"Register successful"})
 
     } catch (error) {
         console.error(error.message);
@@ -44,7 +41,7 @@ const Register = expressAsyncHandler(async (req, res) => {
 
 const Login = expressAsyncHandler(async (req, res) => {
     try {
-        const { username, password } = req.body; // Corrected typo here
+        const { username, password } = req.body;
 
         let user = await User.findOne({ username });
         if (!user) return res.status(400).json({ msg: 'Invalid credentials' });
@@ -60,17 +57,15 @@ const Login = expressAsyncHandler(async (req, res) => {
 
         jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: 3600 }, (err, token) => {
             if (err) throw err;
-            res.json({ token });
+            res.cookie('token', token, { httpOnly: true });
+            res.status(200).json({ message: "Login successful" });
         });
-        res.status(200).json({message:"Login successful"})
 
     } catch (error) {
-        next(err);
         console.log(error);
         console.error(error.message);
         res.status(500).send('Server error');
     }
 });
 
-
-module.exports = { Register,Login };
+module.exports = { Register, Login };

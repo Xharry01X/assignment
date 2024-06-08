@@ -8,7 +8,7 @@ const RatingSchema = new mongoose.Schema({
 
 const StepSchema = new mongoose.Schema({
     stepNumber: { type: Number, required: true },
-    description: { type: String, required: true }
+    description: { type: String, required: true } // Make description required
 });
 
 const ImageSchema = new mongoose.Schema({
