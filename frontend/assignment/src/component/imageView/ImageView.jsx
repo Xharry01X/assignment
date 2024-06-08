@@ -62,9 +62,9 @@ export default function TitlebarImageList() {
 
   return (
     <div className='image-view'>
-      <ImageList sx={{ width: 500, height: 680 }}>
+      <ImageList sx={{ width: 550, height: 500 }}>
         <ImageListItem key="Subheader" cols={2}>
-          <ListSubheader component="div">December</ListSubheader>
+          {/* <ListSubheader component="div">December</ListSubheader> */}
         </ImageListItem>
         {items.map((item, index) => (
           <ImageListItem key={item.img}>
