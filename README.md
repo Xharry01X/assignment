@@ -14,7 +14,7 @@ Before getting started, ensure you have the following installed on your machine:
 1. Clone this repository:
 
    ```bash
-   git clone <repository-url>
+   git clone <https://github.com/harshit-1245/assignment>
    ```
 
 2. Navigate to the frontend directory:
