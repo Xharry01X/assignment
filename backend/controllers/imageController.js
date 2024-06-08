@@ -8,9 +8,18 @@ const createImage=expressAsyncHandler(async(req,res,next)=>{
         const newImage = new Image({ url, name, description, caption, steps, userRatings });
         const image = await newImage.save();
         res.json(image);
-    } catch (error) {
-        next(error); 
+    } catch (err) {
+        next(err); 
     }
 })
 
-module.exports={createImage}
+const getImages=expressAsyncHandler(async(req,res,next)=>{
+    try {
+        const images=await Image.find()
+        res.status(200).json(images)
+    } catch (err) {
+        next(err)
+    }
+})
+
+module.exports={createImage,getImages}
