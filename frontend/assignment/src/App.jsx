@@ -10,12 +10,15 @@ import TitlebarImageList from './component/imageView/ImageView'
 import Header from './component/header/Header'
 import SingleImage from './component/singleImage/SingleImage'
 import Upload from './component/upload/Upload'
+import { Context} from './component/context/Context'
 
 function App() {
+  
   
 
   return (
     <>
+    <Context>
     <Header/>
      <BrowserRouter>
       <Routes>
@@ -28,6 +31,7 @@ function App() {
         <Route/>
       </Routes>
      </BrowserRouter>
+     </Context>
     </>
   )
 }

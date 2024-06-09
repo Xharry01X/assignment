@@ -13,11 +13,12 @@ export default function TitlebarImageList() {
   const [hasMore, setHasMore] = useState(true);
   const [items, setItems] = useState([]);
   const observer = useRef();
+  //this is for inifnite scrolling
 
   useEffect(() => {
     loadItems();
 
-    // Initialize Intersection Observer
+   
     const options = {
       root: null,
       rootMargin: '20px',
@@ -67,7 +68,7 @@ export default function TitlebarImageList() {
           {/* <ListSubheader component="div">December</ListSubheader> */}
         </ImageListItem>
         {items.map((item, index) => (
-          <ImageListItem key={item.img}>
+          <ImageListItem key={`${item.img}-${index}`}> {/* Use a unique key */}
             <Link to={`/image/${index}`}>
               <img
                 srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
@@ -97,6 +98,7 @@ export default function TitlebarImageList() {
     </div>
   );
 }
+
 
 const itemData = [
   {

@@ -4,7 +4,7 @@ const imageRouter = express.Router();
 const auth = require('../middlewares/auth');
 const { createImage, getImages, getImageById,updateImage,deleteImage} = require( '../controllers/imageController' );
 
-imageRouter.post('/create', auth, createImage);
+imageRouter.post('/create', createImage);
 imageRouter.get('/images', auth, getImages);
 imageRouter.get('/:id', auth, getImageById);
 imageRouter.put('/update/:id', auth, updateImage);

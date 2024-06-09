@@ -1,17 +1,31 @@
 const expressAsyncHandler=require("express-async-handler")
 const Image=require("../models/imageModel")
 
-const createImage=expressAsyncHandler(async(req,res,next)=>{
+const createImage = expressAsyncHandler(async (req, res, next) => {
     try {
-        const { url, name, description, caption, steps, userRatings } = req.body;
-
-        const newImage = new Image({ url, name, description, caption, steps, userRatings });
-        const image = await newImage.save();
-        res.json(image);
+      const { url, name, description, caption, steps, rating } = req.body;
+  
+      // Validate steps to ensure they contain stepNumber and description
+      if (!Array.isArray(steps) || steps.some(step => !step.stepNumber || !step.description)) {
+        return res.status(400).json({ message: 'Invalid steps format' });
+      }
+  
+      const newImage = new Image({
+        url,
+        name,
+        description,
+        caption,
+        steps,
+        rating,
+       
+      });
+  
+      const image = await newImage.save();
+      res.json(image);
     } catch (err) {
-        next(err); 
+      next(err);
     }
-})
+  });
 
 const getImages=expressAsyncHandler(async(req,res,next)=>{
     try {

@@ -48,13 +48,13 @@ const Register = () => {
       localStorage.setItem("Token", token);
       navigation("/")
 
-      // Display success alert
+      
       alert("Registration Successful: You have successfully registered.");
 
       
     } catch (error) {
       console.error(error);
-      // Display error alert
+      
       alert("Registration Failed: An error occurred while registering. Please try again later.");
     }
   };
