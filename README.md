@@ -120,7 +120,9 @@ This project is an Image Gallery application that allows users to perform CRUD (
       "url": "string",
       "name": "string",
       "description": "string",
-      "caption": "string"
+      "caption": "string",
+      "rating":"number",
+      "steps":[""]
     }
   ]
 
