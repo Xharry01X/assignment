@@ -71,11 +71,56 @@ Before getting started, ensure you have the following installed on your machine:
 - The backend files are located in the `backend` directory.
 - Customize and extend the application to fit your requirements.
 
-## Deployment
+# Image Gallery CRUD Application
 
-- Before deploying your application to production, ensure to configure appropriate environment variables and set up deployment scripts.
-- Consider using a hosting platform such as [Heroku](https://www.heroku.com/), [Vercel](https://vercel.com/), or [AWS](https://aws.amazon.com/) for deployment.
+## Overview
 
-## License
+This project is an Image Gallery application that allows users to perform CRUD (Create, Read, Update, Delete) operations on images. The application is built using the MERN stack (MongoDB, Express, React, Node.js) and includes features for fetching and caching images. The primary focus of this project is to demonstrate CRUD operations and caching mechanisms.
 
-This project is licensed under the [MIT License](LICENSE).
+## Features
+
+- **Create**: Upload and add new images to the gallery.
+- **Read**: View and browse images in the gallery.
+- **Update**: Edit image details such as title and description.
+- **Delete**: Remove images from the gallery.
+- **Caching**: Improve performance by caching images.
+
+## Technologies and Libraries Used
+
+### Backend
+
+- **Node.js**: JavaScript runtime for server-side development.
+- **Express.js**: Web framework for Node.js.
+- **MongoDB**: NoSQL database for storing image data.
+- **Mongoose**: ODM (Object Data Modeling) library for MongoDB.
+- **cors**: Middleware for enabling Cross-Origin Resource Sharing.
+- **dotenv**: Module for loading environment variables.
+
+### Frontend
+
+- **React**: JavaScript library for building user interfaces.
+- **React Router**: Library for routing in React applications.
+- **Zustand**: State management library.(not implemented but soon I'll implement)
+- **React Query**: Data-fetching library for React (used previously).
+- **CSS**: Styling for the application.
+
+## API Documentation
+
+### Endpoints
+
+#### Get All Images
+- **Endpoint**: `/api/img`
+- **Method**: GET
+- **Description**: Retrieve all images from the database.
+- **Response**:
+  ```json
+  [
+    {
+      "_id": "string",
+      "url": "string",
+      "name": "string",
+      "description": "string",
+      "caption": "string"
+    }
+  ]
+
