@@ -3,19 +3,19 @@
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    background-color: #f8f9fa; /* Light gray background */
+    background-color: #f8f9fa; 
     color: #333;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 80%; /* Adjusted width */
-    max-width: 800px; /* Added max-width */
+    width: 80%; 
+    max-width: 800px; 
    margin-top: 30%;
 }
 
 .image-box img {
     max-width: 100%;
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Added subtle shadow */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .details-box {
@@ -34,7 +34,7 @@
 
 .steps-box {
     margin-bottom: 20px;
-    text-align: left; /* Align step descriptions to the left */
+    text-align: left; 
 }
 
 .steps-box h3 {
@@ -59,7 +59,7 @@
 .button-box .update-button,
 .button-box .delete-button {
     padding: 10px 20px;
-    margin: 0 10px; /* Added margin between buttons */
+    margin: 0 10px; 
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -67,7 +67,7 @@
 }
 
 .button-box .update-button {
-    background-color: #28a745; /* Green color for update button */
+    background-color: #28a745; 
     color: white;
 }
 
@@ -76,7 +76,7 @@
 }
 
 .button-box .delete-button {
-    background-color: #dc3545; /* Red color for delete button */
+    background-color: #dc3545; 
     color: white;
 }
 
