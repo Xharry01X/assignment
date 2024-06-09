@@ -1,20 +1,10 @@
 import React, { useState } from 'react';
-import {
-  Box,
-  Button,
-  FormControl,
-  FormLabel,
-  Heading,
-  Input,
-  
-  VStack,
-  Text,
-  Link,
-  useToast,
-} from '@chakra-ui/react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import { useNavigate } from 'react-router-dom';
+import './Login.css';
 
 const Login = () => {
+  const navigation=useNavigate()
   const [show, setShow] = useState(false);
   const [user, setUser] = useState({
     username: '',
@@ -33,84 +23,75 @@ const Login = () => {
     setShow(!show);
   };
 
+  const handleLogin = async () => {
+    try {
+      const response = await fetch("http://localhost:4000/api/auth/login", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user),
+      });
+      if (!response.ok) {
+        throw new Error('Failed to register user');
+      }
+
+      setUser({
+        username: '',
+        password: '',
+      });
+
+      const data = await response.json();
+      const token = data.token;
+
+      localStorage.setItem("Token", token);
+
+     navigation("/")
+    } catch (error) {
+      console.error(error);
+      alert("Registration Failed: An error occurred while registering. Please try again later.");
+    }
+  };
+
   return (
-    <Box
-      bg="gray.900"
-      color="white"
-      minH="100vh"
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      px={4}
-    >
-      <VStack
-        spacing={4}
-        width={{ base: '100%', sm: '400px' }}
-        padding={6}
-        boxShadow="2xl"
-        borderRadius="md"
-        bg="gray.800"
-      >
-        <Heading as="h1" size="lg" mb={4}>
-          Login
-        </Heading>
-        <FormControl id="email-login" isRequired>
-          <FormLabel>Email</FormLabel>
-          <Input
+    <div className="login-container">
+      <div className="login-box">
+        <h1>Login</h1>
+        <div className="form-group">
+          <label htmlFor="email-login">Email</label>
+          <input
+            type="email"
+            id="email-login"
             placeholder="Enter Your Email"
             name="username"
             value={user.username}
             onChange={handleChange}
-            bg="gray.700"
-            border="none"
-            color="white"
-            _placeholder={{ color: 'gray.400' }}
+            required
           />
-        </FormControl>
-        <FormControl id="password-login" isRequired>
-          <FormLabel>Password</FormLabel>
-          <Box
-            bg="gray.700"
-            display="flex"
-            alignItems="center"
-            borderRadius="md"
-            paddingRight="1rem"
-          >
-            <Input
+        </div>
+        <div className="form-group">
+          <label htmlFor="password-login">Password</label>
+          <div className="password-box">
+            <input
               type={show ? 'text' : 'password'}
+              id="password-login"
               placeholder="Enter Your Password"
               name="password"
               value={user.password}
               onChange={handleChange}
-              bg="gray.700"
-              border="none"
-              color="white"
-              _placeholder={{ color: 'gray.400' }}
+              required
             />
-            <Button
-              onClick={handleClick}
-              variant="ghost"
-              colorScheme="blue"
-              borderRadius="full"
-              size="sm"
-              ml={-10}
-              zIndex={1}
-            >
+            <button type="button" className="toggle-password" onClick={handleClick}>
               {show ? <AiFillEyeInvisible size="1.5em" /> : <AiFillEye size="1.5em" />}
-            </Button>
-          </Box>
-        </FormControl>
-        <Button colorScheme="blue" width="100%" mt={4}>
-          Login
-        </Button>
-        <Text fontSize="sm" color="gray.300" mt={4}>
-          Don’t have an account?{' '}
-          <Link href="/register" color="blue.400">
-            Sign Up
-          </Link>
-        </Text>
-      </VStack>
-    </Box>
+            </button>
+          </div>
+        </div>
+        <button className="login-button" onClick={handleLogin}>Login</button>
+        <p className="signup-link">
+          Don’t have an account? <a href="/register">Sign Up</a>
+        </p>
+      </div>
+    </div>
   );
 };
 

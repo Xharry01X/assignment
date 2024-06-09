@@ -27,10 +27,10 @@ const Register = expressAsyncHandler(async (req, res) => {
             }
         };
 
-        jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: 3600 }, (err, token) => {
+        jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: 36000 }, (err, token) => {
             if (err) throw err;
             res.cookie('token', token, { httpOnly: true });
-            res.status(200).json({ message: "Register successful" });
+            res.status(200).json({ message: "Register successful", token }); // Include token in the response body
         });
 
     } catch (error) {
@@ -38,6 +38,7 @@ const Register = expressAsyncHandler(async (req, res) => {
         res.status(500).send('Server error');
     }
 });
+
 
 const Login = expressAsyncHandler(async (req, res) => {
     try {
@@ -55,10 +56,10 @@ const Login = expressAsyncHandler(async (req, res) => {
             }
         };
 
-        jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: 3600 }, (err, token) => {
+        jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: 36000 }, (err, token) => {
             if (err) throw err;
             res.cookie('token', token, { httpOnly: true });
-            res.status(200).json({ message: "Login successful" });
+            res.status(200).json({ message: "Login successful",token });
         });
 
     } catch (error) {
