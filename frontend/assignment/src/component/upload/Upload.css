@@ -36,7 +36,7 @@
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    background-color: white; /* Ensure input boxes are white */
+    background-color: black; /* Ensure input boxes are white */
 }
 
 .form-group textarea {
