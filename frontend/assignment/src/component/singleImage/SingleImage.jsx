@@ -1,39 +1,49 @@
 import React from 'react';
 import './SingleImage.css';
+import { useParams } from 'react-router-dom';
+import useSWR from "swr";
+
+const fetcher = async (url) => {
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error('Failed to fetch data');
+    }
+    return response.json();
+};
 
 const SingleImage = () => {
-    const dummyImage = {
-        url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8qC8u8YJXqbl_KDqdxlCTVc5bcVowChUHHw&s',
-        name: 'Sample Image',
-        caption: 'A beautiful scenery',
-        description: 'This is a sample image of a beautiful scenery.',
-        rating: 4.5,
-        steps: [
-            { number: 1, description: 'Step 1: Find a good spot to take a photo.' },
-            { number: 2, description: 'Step 2: Adjust your camera settings.' },
-            { number: 3, description: 'Step 3: Capture the photo.' },
-        ],
-    };
+    const { id } = useParams();
+    const { data, error } = useSWR(`http://localhost:4000/api/img/${id}`, fetcher);
+
+    if (error) {
+        return <p>Error: {error.message}</p>;
+    }
+
+    if (!data) {
+        return <p>Loading...</p>;
+    }
+
+    const { url, name, caption, description, rating, steps } = data;
 
     return (
         <div className="single-image-container">
             <div className="image-box">
-                <img src={dummyImage.url} alt={dummyImage.caption} />
+                <img src={url} alt={caption} />
             </div>
             <div className="details-box">
-                <h2>{dummyImage.name}</h2>
-                <p><strong>Caption:</strong> {dummyImage.caption}</p>
-                <p><strong>Description:</strong> {dummyImage.description}</p>
+                <h2>{name}</h2>
+                <p><strong>Caption:</strong> {caption}</p>
+                <p><strong>Description:</strong> {description}</p>
                 <div className="rating-box">
                     <label><strong>Rating:</strong></label>
-                    <span>{dummyImage.rating}</span>
+                    <span>{rating}</span>
                 </div>
                 <div className="steps-box">
                     <h3>Steps:</h3>
                     <ul>
-                        {dummyImage.steps.map((step) => (
-                            <li key={step.number}>
-                                <strong>Step {step.number}:</strong> {step.description}
+                        {steps.map((step, index) => (
+                            <li key={index}>
+                                <strong>Step {step.stepNumber}:</strong> {step.description}
                             </li>
                         ))}
                     </ul>

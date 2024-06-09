@@ -1,4 +1,4 @@
-// src/api/api.js
+
 export const uploadImage = async (formData) => {
     const response = await fetch('http://localhost:4000/api/img/create', {
         method: 'POST',
@@ -15,3 +15,5 @@ export const uploadImage = async (formData) => {
 
     return response.json();
 };
+
+

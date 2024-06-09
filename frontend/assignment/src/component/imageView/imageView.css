@@ -1,4 +1,39 @@
-.image-view{
-    width: 50%;
-    height: 50%;
+.image-view {
+  display: flex;
+  justify-content: center;
+  margin-top: 20%;
+}
+
+.image-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+  max-width: 1000px;
+  cursor: pointer;
+}
+
+.image-list-item {
+  width: calc(33.33% - 20px); /* Adjust width for 3 boxes per line with gap */
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.image-list-item img {
+  width: 100%;
+  height: auto;
+}
+
+.image-details {
+  margin-top: 10px;
+}
+
+.image-title {
+  margin: 0;
+  font-weight: bold;
+}
+
+.image-description {
+  margin: 0;
 }

@@ -5,7 +5,7 @@ const createImage = expressAsyncHandler(async (req, res, next) => {
     try {
       const { url, name, description, caption, steps, rating } = req.body;
   
-      // Validate steps to ensure they contain stepNumber and description
+     
       if (!Array.isArray(steps) || steps.some(step => !step.stepNumber || !step.description)) {
         return res.status(400).json({ message: 'Invalid steps format' });
       }

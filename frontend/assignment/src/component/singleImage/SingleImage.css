@@ -3,18 +3,19 @@
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    background-color: #f0f0f0;
+    background-color: #f8f9fa; /* Light gray background */
     color: #333;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    margin: 20px auto;
-    margin-top: 50px;
+    width: 80%; /* Adjusted width */
+    max-width: 800px; /* Added max-width */
+   margin-top: 30%;
 }
 
 .image-box img {
     max-width: 100%;
     border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Added subtle shadow */
 }
 
 .details-box {
@@ -24,9 +25,6 @@
 }
 
 .rating-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     margin-bottom: 20px;
 }
 
@@ -36,6 +34,7 @@
 
 .steps-box {
     margin-bottom: 20px;
+    text-align: left; /* Align step descriptions to the left */
 }
 
 .steps-box h3 {
@@ -49,18 +48,18 @@
 
 .steps-box ul li {
     margin-bottom: 5px;
-    text-align: left;
 }
 
 .button-box {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     width: 100%;
 }
 
 .button-box .update-button,
 .button-box .delete-button {
     padding: 10px 20px;
+    margin: 0 10px; /* Added margin between buttons */
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -68,19 +67,19 @@
 }
 
 .button-box .update-button {
-    background-color: #4caf50;
+    background-color: #28a745; /* Green color for update button */
     color: white;
 }
 
 .button-box .update-button:hover {
-    background-color: #45a049;
+    background-color: #218838;
 }
 
 .button-box .delete-button {
-    background-color: #f44336;
+    background-color: #dc3545; /* Red color for delete button */
     color: white;
 }
 
 .button-box .delete-button:hover {
-    background-color: #da190b;
+    background-color: #c82333;
 }

@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { uploadImage } from '../api/api';
 import { UserContext } from '../context/Context';
+import { useNavigate } from 'react-router-dom';
 import './Upload.css';
 
 const Upload = () => {
   const { userId, authenticated } = useContext(UserContext);
+  const navigation=useNavigate()
   const [formData, setFormData] = useState({
     url: '',
     name: '',
@@ -23,6 +25,7 @@ const Upload = () => {
         try {
           await uploadImage(formData); // Token will be included in the cookie
           setSuccess('Image uploaded successfully!');
+          navigation("/")
           setError('');
         } catch (err) {
           setError(err.message);

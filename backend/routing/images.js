@@ -5,9 +5,9 @@ const auth = require('../middlewares/auth');
 const { createImage, getImages, getImageById,updateImage,deleteImage} = require( '../controllers/imageController' );
 
 imageRouter.post('/create', createImage);
-imageRouter.get('/images', auth, getImages);
-imageRouter.get('/:id', auth, getImageById);
-imageRouter.put('/update/:id', auth, updateImage);
-imageRouter.delete('/:id', auth, deleteImage);
+imageRouter.get('/images', getImages);
+imageRouter.get('/:id', getImageById);
+imageRouter.put('/update/:id',  updateImage);
+imageRouter.delete('/:id', deleteImage);
 
 module.exports = imageRouter;
